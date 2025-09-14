@@ -2,10 +2,10 @@
   "name": "week-2",
   "version": "1.0.0",
   "description": "",
-  "main": "day1.js",
+  "main": "day2.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node day1.js"
+    "dev": "node day2.js"
   },
   "keywords": [],
   "author": "",
