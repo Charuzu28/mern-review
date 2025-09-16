@@ -2,10 +2,10 @@
   "name": "week-2",
   "version": "1.0.0",
   "description": "",
-  "main": "day3.js",
+  "main": "day4.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node day3.js"
+    "dev": "node day4.js"
   },
   "keywords": [],
   "author": "",
@@ -13,5 +13,8 @@
   "type": "commonjs",
   "devDependencies": {
     "nodemon": "^3.1.10"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.2"
   }
 }
