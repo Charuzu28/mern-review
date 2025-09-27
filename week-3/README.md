@@ -1,0 +1,4 @@
+- CRUD for notes
+- Middleware for logging, validation
+- Centralized error handler
+- Ready for frontend integration
