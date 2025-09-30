@@ -1,31 +1,21 @@
-require('dotenv').config();
-const express = require('express');
-const fs = require('fs');
-const mongoose = require('mongoose');
-const PORT = process.env.PORT;
-const Note = require('./models/Notes')
+import express from 'express'
+import mongoose from 'mongoose'
+import connectDb from './config/db.js'
+import noteRoutes from './routes/noteRoutes.js'
+import dotenv from 'dotenv'
+
+dotenv.config();
+connectDb();
+
+const PORT = process.env.PORT || 5000;
 
 const app = express();
-
 app.use(express.json());
 
-mongoose.connect(process.env.MONGO_URI)
-.then(() => console.log("Connected to Mongodb!"))
-.catch(err => console.error("Error Connecting: ", err))
+app.use('/api/notes', noteRoutes);
 
-app.post("/notes", async (req, res) => {
-    try {
-        const note = new Note(req.body);
-        const saved = await note.save();
-        res.status(201).json(saved)
-    } catch (error) {
-        res.status(400).json({ error: error.message })
-    }
-})
-
-app.get("/notes", async (req, res) => {
-    const notes = await Note.find();
-    res.json(notes);
+app.get('/', (req, res) => {
+    res.send('API IS RUNNING.....')
 })
 
 app.listen(PORT, () => {
