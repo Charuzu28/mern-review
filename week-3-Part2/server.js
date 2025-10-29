@@ -1,5 +1,8 @@
 const express = require('express');
 const dotenv = require('dotenv');
+const helmet = require('helmet');
+const cors = require('cors');
+const morgan = require('morgan')
 // const mongoose = require('mongoose')
 const noteRoute = require('./day3/routes/noteRoute');
 const logger = require('./day4/middleware/logger')
@@ -10,6 +13,11 @@ dotenv.config();
 const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
+
+// Security
+app.use(cors());
+app.use(helmet());
+app.use(morgan('dev'));
 
 app.use(logger);
 app.use('/api/notes', noteRoute);
