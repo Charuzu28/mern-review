@@ -3,8 +3,28 @@ import { Note } from "../models/noteModel.js";
 // GET ALL NOTES
 export const getNotes = async (req, res) => {
     try {
-         const note = await Note.find();
-         res.status(200).json(note);
+        const {title, sort, page = 1, limit = 5} = req.query;
+        const query = {};
+        if(title){
+            query.title = {$regex: title, $options: 'i'};
+        }
+
+        const sortOrder = sort === 'asc' ? 1 : -1;
+        const skip = (page - 1) * limit;
+
+         const note = await Note.find(query)
+         .sort({createdAt: sortOrder})
+         .skip(skip)
+         .limit(parseInt(limit));
+
+        const total = await Note.countDocuments(query);
+         res.status(200)
+         .json({
+            total,
+            page: parseInt(page),
+            totalPages: Math.ceil(total / limit),
+            note
+         });
     } catch (error) {
         res.status(500).json({message: error.message});
     }
