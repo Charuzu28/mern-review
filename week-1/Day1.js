@@ -45,12 +45,16 @@ if(num1 === num2){              // Here as you can see it doesnt convert the typ
 
 // Assignment C
     // Predict the output (NO RUNNING FIRST):
-    // console.log("5" + 1); //Answer: 7
+    // console.log("5" + 1); //Answer: 51
     // console.log("5" - 1); //Answer:  4
     // console.log("5" * "2"); //Answer:  10
-    // console.log("hello" * 2); //Answer:  hello 2
+    // console.log("hello" * 2); //Answer:  NaN
     // Give explanations.
-    // Ii think its because of auto conversion of some types that some string can be calculated by string to number
+    //The first output is 51 because the operator + concatenates the two operands if either operand is a string.
+    //JS automatically converts the other to string if the there is a string in the operand.
+    // In second output is 4 because operator - does not exist for the string so both will be converted to number.
+    // For the third ouput the answer is 10 because it's the same as - it's undefined for the strings to it will be force to be converted in integer or numeric coercion
+    //In last part the answer is NaN because "hello" cannot be converted so it be NaN * 2 so when it caculated it will be NaN because it cannot be calculated.
 
 
 // DAY 1 — INTERVIEW QUIZ
