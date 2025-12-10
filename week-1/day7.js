@@ -1,68 +1,107 @@
-// ✅ Assignment A — Transform an array using .map()
+// A. Create an array of objects 
+// Make a variable called users that contains 3 objects: 
+// Each object must have:
+// name
+// age
+// isAdmin 
 
-// Given:
-// const numbers = [1, 2, 3, 4, 5];
+// Example structure:
+// [
+//   { name: "Charles", age: 21, isAdmin: false }, 
+//   { ... },
+//   { ... }
+// ] 
 
-// Make a function:
-// function squareAll(arr)
-// that returns a NEW array with all numbers squared.
-// ✔ Do not mutate original array
-// ✔ Must use .map()
-// ✔ Must return, not print
+// Then:
+// Log the name of the 2nd user
+// Add a new user to the END
+// Remove the FIRST user
+// Log the final array
 
-// Expected output:
-// squareAll([1,2,3]) → [1,4,9]
-function squareAll(arr){
-    return arr.map(n => n * n);
+const users = [
+  { name: "Charles", age: 24, isAdmin: true },
+  { name: "John", age: 20, isAdmin: false },
+  { name: "Mad", age: 22, isAdmin: true }
+];
+
+console.log(users[1].name); // Logs the name of the 2nd user
+
+users.push({ name: "Juan", age: 19, isAdmin: false }); // Add a new user to the end
+users.shift(); // Remove the first user
+
+console.log(users[2].name); // Logs the name of the 3rd user after modifications
+
+
+// B. Write a function: findAdmin(users)
+// Return the first user where isAdmin === true.
+// If no admin found → return null.
+
+// Example:
+// findAdmin([
+//   { name: "A", isAdmin: false },
+//   { name: "B", isAdmin: true }
+// ])
+// → returns { name: "B", isAdmin: true }
+
+// No console.log inside. Just return.
+
+function findAdmin(users) {
+  return users.find(user => user.isAdmin === true);
 }
-console.log(squareAll([1,2,3,4,5]));
 
-// ✅ Assignment B — Filter an array using .filter()
-// Given:
-// const ages = [10, 18, 22, 15, 40];
+console.log(findAdmin([
+  { name: "A", isAdmin: false },
+  { name: "B", isAdmin: true }
+])); // Logs { name: "B", isAdmin: true }
 
-// Write:
-// function getAdults(arr)
-// Return ALL ages ≥ 18.
-// Expected:
-// getAdults([10,18,22,15,40]) → [18,22,40]
-function getAdults(arr){
-    return arr.filter(age => age >= 18);
-};
-console.log(getAdults([10, 18, 22, 15, 40]));
 
-// ✅ Assignment C — Use .reduce()
+// C. Predict the output
+// Do NOT run this first:
 
-// Write:
-// function sum(arr)
+// const a = { value: 10 };
+// const b = a;
+// b.value = 99;
+// console.log(a.value);
+// console.log(b.value);
 
-// Return the total of all numbers using .reduce()
-// Expected:
+// Tell me:
+// exact output
+// WHY it happens
 
-// sum([1,2,3]) → 6
+// Output:
+// 99
+// 99
 
-function sum(arr){
-    return arr.reduce((total, num) => total += num, 0)
-}
-console.log(sum([1,2,3,4,5]));
+// Explanation:
+// The reason both outputs are 99 is because of the line `const b = a;`.
+// In JavaScript, objects are reference types, meaning `b` and `a` refer to the same object in memory.
+// When you modify `b.value = 99;`, it changes the value in the same object that both `a` and `b` reference.
 
-// ✅ Assignment D — Object Deep Access
-// Given:
 
-const user = {
-  name: "Charles",
-  details: {
-    age: 24,
-    favorites: {
-      language: "JavaScript",
-      pet: "Cat"
+// D. Mini Algorithm — countAdults(users)
+// Age ≥ 18 → adult.
+// Write a function that returns how many users are adults.
+
+// Example:
+// countAdults([
+//   { age: 10 },
+//   { age: 30 },
+//   { age: 18 }
+// ])
+// → 2
+
+function countAdults(users) {
+  let count = 0;
+  users.forEach(user => { // Use forEach instead of find
+    if (user.age >= 18) {
+      count++;
     }
-  }
-};
+  });
+  return count;
+}
 
-// Log:
-console.log(user.name)// "Charles"
-console.log(user.details.age)// 24
-console.log(user.details.favorites.language)// "JavaScript"
-console.log(user.details.favorites.pet)// "Cat"
-
+console.log(countAdults([
+  { age: 10 },
+  { age: 30 },
+  { age: 18 }
+])); // Logs 2
