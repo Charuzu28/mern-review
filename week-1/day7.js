@@ -1,114 +1,68 @@
-// A. Create an array of objects
-// Make a variable called users that contains 3 objects:
-// Each object must have:
-// name
-// age
-// isAdmin
-// Example structure:
+// ✅ Assignment A — Transform an array using .map()
 
-// [
-//   { name: "Charles", age: 21, isAdmin: false },
-//   { ... },
-//   { ... }
-// ]
+// Given:
+// const numbers = [1, 2, 3, 4, 5];
 
-// Then:
-// Log the name of the 2nd user
-// Add a new user to the END
-// Remove the FIRST user
-// Log the final array
-const users = [
-    {
-    name: "Charles",
+// Make a function:
+// function squareAll(arr)
+// that returns a NEW array with all numbers squared.
+// ✔ Do not mutate original array
+// ✔ Must use .map()
+// ✔ Must return, not print
+
+// Expected output:
+// squareAll([1,2,3]) → [1,4,9]
+function squareAll(arr){
+    return arr.map(n => n * n);
+}
+console.log(squareAll([1,2,3,4,5]));
+
+// ✅ Assignment B — Filter an array using .filter()
+// Given:
+// const ages = [10, 18, 22, 15, 40];
+
+// Write:
+// function getAdults(arr)
+// Return ALL ages ≥ 18.
+// Expected:
+// getAdults([10,18,22,15,40]) → [18,22,40]
+function getAdults(arr){
+    return arr.filter(age => age >= 18);
+};
+console.log(getAdults([10, 18, 22, 15, 40]));
+
+// ✅ Assignment C — Use .reduce()
+
+// Write:
+// function sum(arr)
+
+// Return the total of all numbers using .reduce()
+// Expected:
+
+// sum([1,2,3]) → 6
+
+function sum(arr){
+    return arr.reduce((total, num) => total += num, 0)
+}
+console.log(sum([1,2,3,4,5]));
+
+// ✅ Assignment D — Object Deep Access
+// Given:
+
+const user = {
+  name: "Charles",
+  details: {
     age: 24,
-    isAdmin: true
-    },
-    {
-    name: "John",
-    age: 20,
-    isAdmin: false
-    },
-    {
-    name: "Mad",
-    age: 22,
-    isAdmin: true
+    favorites: {
+      language: "JavaScript",
+      pet: "Cat"
     }
-];
+  }
+};
 
-console.log(users[1].name);
-users.push(
-    {
-    name: "Juan",
-    age: 19,
-    isAdmin: false
-    }
-    );
-users.shift()
-console.log(users[2].name);
+// Log:
+console.log(user.name)// "Charles"
+console.log(user.details.age)// 24
+console.log(user.details.favorites.language)// "JavaScript"
+console.log(user.details.favorites.pet)// "Cat"
 
-// B. Write a function: findAdmin(users)
-// Return the first user where isAdmin === true.
-// If no admin found → return null.
-
-// Example:
-// findAdmin([
-//     {name:"A", isAdmin:false},
-//     {name:"B", isAdmin:true}
-// ]) 
-
-// → returns {name:"B", isAdmin:true}
-// No console.log inside. Just return.
-function findAdmin(users){
-    const found =  users.find(user => user.isAdmin === true)
-    return found || null;
-}
-console.log(findAdmin([
-    {name:"A", isAdmin:false},
-    {name:"B", isAdmin:true}
-    ]));
-
-// C. Predict the output
-// Do NOT run this first:
-// const a = { value: 10 };
-// const b = a;
-// b.value = 99;
-
-// console.log(a.value); //99
-// console.log(b.value); //99
-
-// Tell me:
-// exact output
-// WHY it happens
-
-//The output of both is 99 because of the (const b = a ) and it change the value of 10 because it redelcared because of b.value = 99;
-//CORRECT ANSWER: 
-// a and b both point to the same object in memory.
-// Changing b.value changes the same object, so a.value also reflects the new value.
-// That’s the real reason.
-
-// D. Mini Algorithm — countAdults(users)
-// Age ≥ 18 → adult.
-// Write a function that returns how many users are adults.
-
-// Example:
-// countAdults([
-//   {age:10},
-//   {age:30},
-//   {age:18}
-// ])
-// → 2
-
-function countAdults(users){
-    let count = 0;
-    users.find(user => {
-        if(user.age >= 18){
-            count++;
-        }
-    })
-    return count;
-}
-console.log(countAdults([
-    {age:10},
-     {age:30},
-     {age:18}
-    ]));
