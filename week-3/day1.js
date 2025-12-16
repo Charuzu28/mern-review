@@ -15,6 +15,14 @@ function findUserById(users, id){
     return users.find(n => n.id === id || null)
 }
 console.log(findUserById([{id:1},{id:2}], 1))
+
+// CORRECT WAY -
+function findUserById(users, id) {
+    const user = users.find(u => u.id === id);
+    return user || null;
+}
+
+
 // B. Check if ANY admin exists
 // function hasAdmin(users)
 
